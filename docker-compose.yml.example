@@ -6,6 +6,7 @@ services:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=YourStrong@Passw0rd
       - MSSQL_COLLATION=SQL_Latin1_General_CP1_CI_AS
+      - MSSQL_PID=Express
     expose:
       - '1433'
     ports:
@@ -13,4 +14,6 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro # linux only
       - ./data/mssql-2017:/var/opt/mssql
+      - ./data/backup:/backup
     restart: unless-stopped
+    working_dir: /var/opt/mssql
